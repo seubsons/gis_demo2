@@ -1,0 +1,10 @@
+--find-links=https://girder.github.io/large_image_wheels GDAL
+geemap
+geopandas
+jupyter-server-proxy
+leafmap==0.18.10
+nbserverproxy
+owslib
+streamlit
+streamlit-leaflet
+numpy
