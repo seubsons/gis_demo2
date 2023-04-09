@@ -62,7 +62,7 @@ with col1:
 
     labels = ['>75', '50-75', '25-50', '10-25', '0-10']
     colors = ['purple', 'red', 'blue', 'orange', 'green']
-    m.add_legend(title='Legend', labels=labels, colors=colors)
+    m.add_legend(title='Legend', labels=labels)
     m.to_streamlit(height=700)
 s
 
