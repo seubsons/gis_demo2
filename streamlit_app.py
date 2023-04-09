@@ -62,7 +62,7 @@ with col1:
 
     labels = ['>75', '50-75', '25-50', '10-25', '0-10']
     colors = ['#800080', '#ff0000', '#0000ff', '#ffa500', '#008000']
-    m.add_legend(title='Legend', labels=labels, colors=colors)
+    m.add_legend(title='μg/m3', labels=labels, colors=colors)
     m.to_streamlit(height=700)
 s
 
