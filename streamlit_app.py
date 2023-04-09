@@ -61,7 +61,7 @@ with col1:
         m.add_marker(location=[lat, lon], tooltip=str(mag), icon=Icon(color=color))
 
     labels = ['>75', '50-75', '25-50', '10-25', '0-10']
-    colors = ['purple', 'red', 'blue', 'orange', 'green']
+    colors = ['#800080', '#ff0000', '#0000ff', '#ffa500', '#008000']
     m.add_legend(title='Legend', labels=labels, colors=colors)
     m.to_streamlit(height=700)
 s
