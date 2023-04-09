@@ -9,12 +9,6 @@ import datetime
 
 api_key = st.secrets["pass"]
 
-# city = 'bangkok'
-# url = "http://api.openweathermap.org/data/2.5/weather?q={}&appid={}"
-# response = requests.get(url.format(city, api_key))
-# data = response.json()
-#st.write(data)
-
 
 df2 = pd.read_csv('th.csv')
 df3 = df2[0:50]
@@ -34,13 +28,9 @@ def getdata(lat, lon):
     return pm2_5, data
 
 df3 = df3.assign(pm2_5=[0] * len(df3))
-# c = 0
-# pm2_5, data = getdata(df3.loc[c, 'lat'], df3.loc[c, 'lng'])
-# df3.loc[c, 'pm2_5'] = pm2_5
 for c in np.arange(len(df3)):
     pm2_5, data = getdata(df3.loc[c, 'lat'], df3.loc[c, 'lng'])
     df3.loc[c, 'pm2_5'] = pm2_5
-#df3.to_csv('owm_pm2_5.csv', index=False)
 
 timestamp = data['list'][0]['dt']
 dt_object = datetime.datetime.fromtimestamp(timestamp)
@@ -52,7 +42,6 @@ st.set_page_config(layout="wide")
 
 # Customize page title
 st.title("GPT OpenWeather leafmap")
-#st.write(df3)
 
 # //////////////////////////////////////
 st.header("PM2.5")
@@ -64,13 +53,6 @@ with col1:
                 draw_control=False,
                 measure_control=False,
                )
-    # m.add_heatmap(
-    #             df3,
-    #             latitude="lat",
-    #             longitude="lng",
-    #             value="population",
-    #             name="Heatmap",
-    #             radius=25)
     for i, row in df3.iterrows():
         mag = row['pm2_5']
         lat = row['lat']
@@ -78,25 +60,11 @@ with col1:
         color = 'purple' if mag > 75 else 'red' if mag > 50 else 'blue' if mag > 25 else 'orange' if mag > 10 else 'green'
         m.add_marker(location=[lat, lon], tooltip=str(mag), icon=Icon(color=color))
 
+    labels = ['>75', '50-75', '25-50', '10-25', '0-10']
+    colors = ['purple', 'red', 'blue', 'orange', 'green']
+    m.add_legend(title='μg/m3', labels=labels, colors=colors)
     m.to_streamlit(height=700)
-
-# with col2:
-#     m = leafmap.Map(center=map_center, zoom=6,
-#                 draw_control=False,
-#                 measure_control=False,
-#                )
-#     lat = df3.loc[0, 'lat']
-#     lon = df3.loc[0, 'lng']
-#     mag = df3.loc[0, 'population']
-#     m.add_marker(location=[lat, lon], tooltip=str(mag), icon=Icon(color='red'))
-#     # m.add_heatmap(
-#     #             df3,
-#     #             latitude="lat",
-#     #             longitude="lng",
-#     #             value="pm2_5",
-#     #             name="Heatmap",
-#     #             radius=25)
-#     m.to_streamlit(height=700)
+s
 
 with col2:
     show_temp = st.beta_expander(label='PM2.5')
