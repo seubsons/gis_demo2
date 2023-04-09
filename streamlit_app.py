@@ -64,7 +64,6 @@ with col1:
     colors = ['#800080', '#ff0000', '#0000ff', '#ffa500', '#008000']
     m.add_legend(title='μg/m3', labels=labels, colors=colors)
     m.to_streamlit(height=700)
-s
 
 with col2:
     show_temp = st.beta_expander(label='PM2.5')
