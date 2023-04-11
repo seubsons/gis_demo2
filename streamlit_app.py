@@ -60,9 +60,9 @@ with col1:
         color = 'purple' if mag > 75 else 'red' if mag > 50 else 'blue' if mag > 25 else 'orange' if mag > 10 else 'green'
         m.add_marker(location=[lat, lon], tooltip=str(mag), icon=Icon(color=color))
 
-    labels = ['>75', '50-75', '25-50', '10-25', '0-10']
+    labels = ['Very Poor', 'Poor', 'Moderate', 'Fair', 'Good']
     colors = ['#800080', '#ff0000', '#0000ff', '#ffa500', '#008000']
-    m.add_legend(title='μg/m3', labels=labels, colors=colors)
+    m.add_legend(title='PM2.5', labels=labels, colors=colors)
     m.to_streamlit(height=700)
 
 with col2:
@@ -84,6 +84,7 @@ m = leafmap.Map(center=map_center, zoom=8,
 
 m.add_basemap("HYBRID", show=False)
 m.add_basemap("Esri.WorldStreetMap", show=True)
+m.add_basemap('CartoDB.DarkMatter', show=False)
 
 layer = "precipitation_new"
 m.add_tile_layer(url=f"http://tile.openweathermap.org/map/{layer}/{{z}}/{{x}}/{{y}}.png?appid={api_key}",
