@@ -40,6 +40,7 @@ Last_Update = f"Last Updated: {Date}, {Time} UTC"
 ##################################################################
 st.set_page_config(layout="wide")
 
+
 # Customize page title
 st.title("GPT OpenWeather leafmap")
 
