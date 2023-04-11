@@ -9,7 +9,6 @@ import datetime
 
 api_key = st.secrets["pass"]
 
-
 df2 = pd.read_csv('th.csv')
 df3 = df2[0:50]
 
